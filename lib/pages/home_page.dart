@@ -1,3 +1,4 @@
+import 'package:easymart/pages/detail_gambar.dart';
 import 'package:flutter/material.dart';
 
 import 'package:easymart/pages/info_page.dart';
@@ -24,6 +25,16 @@ class HomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            InkWell(
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const DetailGambar()));
+              },
+              child: Hero(
+                tag: "image_animation",
+                child: Image.asset("assets/sepatu1.png", width: 350),
+              ),
+            ),
             ElevatedButton.icon(
               onPressed: () {
                 showDialog(
@@ -75,8 +86,8 @@ class HomePage extends StatelessWidget {
               ),
             ),
             ListTile(
-              leading: Icon(Icons.exit_to_app),
-              title: Text("Logout"),
+              leading: const Icon(Icons.exit_to_app),
+              title: const Text("Logout"),
               onTap: () {
                 // Tambahkan fungsi logout di sini
               },
