@@ -13,9 +13,9 @@ class DetailGambar extends StatelessWidget {
         tag: "image_animation",
         child: GestureDetector(
           onTap: () {
-            
+            Navigator.pop(context);
           },
-          child: Image.asset("assets/sepatu1.png", width: 350)),
+          child: Image.asset("assets/sepatu1.png", width: 300)),
       ),
     );
   }
