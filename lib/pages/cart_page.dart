@@ -34,21 +34,24 @@ class CartPage extends StatelessWidget {
 
 List<Widget> _generateConstraints() {
   return List<Widget>.generate(10, (int index) {
-    return Card(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const SizedBox(height: 8),
-          Text("Product $index"),
-          const SizedBox(height: 8),
-          Text("Rp 100.000"),
-          const SizedBox(height: 8),
-          ElevatedButton(
-            onPressed: () {},
-            child: const Text("Beli"),
-          ),
-          const SizedBox(height: 8),
-        ],
+    return SingleChildScrollView(
+      child: Card(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset("assets/sepatu1.png", width: 350),
+            const SizedBox(height: 8),
+            Text("Product $index"),
+            const SizedBox(height: 8),
+            const Text("Rp 100.000"),
+            const SizedBox(height: 8),
+            ElevatedButton(
+              onPressed: () {},
+              child: const Text("Beli"),
+            ),
+            const SizedBox(height: 8),
+          ],
+        ),
       ),
     );
   });
