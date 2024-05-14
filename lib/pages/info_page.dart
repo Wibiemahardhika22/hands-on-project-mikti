@@ -45,6 +45,18 @@ class _InfoPageState extends State<InfoPage> {
             top: posY,
             left: posX,
             child: GestureDetector(
+              onVerticalDragUpdate: (details) {
+                setState(() {
+                  double verticalPosition = details.delta.dy;
+                  posY += verticalPosition;
+                });
+              },
+              onHorizontalDragUpdate: (details) {
+                setState(() {
+                  double horizontalPosition = details.delta.dx;
+                  posX += horizontalPosition;
+                });
+              },
               onTap: () {
                 setState(() {
                   numOfSingleTap++;
