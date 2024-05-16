@@ -1,4 +1,13 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
+
+double randomBorderRadius() {
+  return Random().nextDouble() * 20;
+}
+
+double randomMargin() {
+  return Random().nextDouble() * 20;
+}
 
 class InfoPage extends StatefulWidget {
   const InfoPage({super.key});
@@ -8,98 +17,51 @@ class InfoPage extends StatefulWidget {
 }
 
 class _InfoPageState extends State<InfoPage> {
-  final double boxSize = 150;
+  late double borderRadius; //initial state
+  late double margin;
 
-  int numOfSingleTap = 0;
-  int numOfDoubleTap = 0;
-  int numOfLongPress = 0;
+  @override
+  void initState() {
+    super.initState();
+    borderRadius = randomBorderRadius();
+    margin = randomMargin();
+  }
 
-  double posX = 0.0;
-  double posY = 0.0;
-
-  void centerPosition(BuildContext context) {
-    posX = (MediaQuery.of(context).size.width - boxSize) / 2;
-    posY = (MediaQuery.of(context).size.height - boxSize) / 2 - 30;
-
+  void changesState() {
     setState(() {
-      posX = posX;
-      posY = posY;
+      borderRadius = randomBorderRadius();
+      margin = randomMargin();
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    // Size screenSize = MediaQuery.of(context).size;
-    // Orientation orientation = MediaQuery.of(context).orientation;
-    if (posX == 0) {
-      centerPosition(context);
-    }
-
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Info"),
-      ),
-      body: Stack(
-        children: [
-          Positioned(
-            top: posY,
-            left: posX,
-            child: GestureDetector(
-              onVerticalDragUpdate: (details) {
-                setState(() {
-                  double verticalPosition = details.delta.dy;
-                  posY += verticalPosition;
-                });
-              },
-              onHorizontalDragUpdate: (details) {
-                setState(() {
-                  double horizontalPosition = details.delta.dx;
-                  posX += horizontalPosition;
-                });
-              },
-              onTap: () {
-                setState(() {
-                  numOfSingleTap++;
-                });
-              },
-              onDoubleTap: () {
-                setState(() {
-                  numOfDoubleTap++;
-                });
-              },
-              onLongPress: () {
-                setState(() {
-                  numOfLongPress++;
-                });
-              },
-              child: Container(
-                width: boxSize,
-                height: boxSize,
-                color: Colors.amber,
+      body: SafeArea(
+        child: Center(
+          child: Column(
+            children: [
+              SizedBox(
+                width: 100,
+                height: 100,
+                child: AnimatedContainer(
+                  duration: const Duration(milliseconds: 2000),
+                  curve: Curves.bounceIn,
+                  margin: EdgeInsets.all(margin),
+                  decoration: BoxDecoration(
+                    color: Colors.amber,
+                    borderRadius: BorderRadius.circular(borderRadius),
+                  ),
+                ),
               ),
-            ),
+              ElevatedButton(
+                onPressed: () => changesState(),
+                child: const Text('Ubah'),
+              )
+            ],
           ),
-        ],
-      ),
-      bottomNavigationBar: Text(
-        "Single Taps: $numOfSingleTap - Double Taps: $numOfDoubleTap - Long Press: $numOfLongPress",
-        style: const TextStyle(fontSize: 20),
-        textAlign: TextAlign.center,
+        ),
       ),
     );
-
-    // SafeArea(
-    //   child: Center(
-    //     child: Column(
-    //       mainAxisAlignment: MainAxisAlignment.center,
-    //       crossAxisAlignment: CrossAxisAlignment.center,
-    //       children: [
-    //         Text("Screen Width: ${screenSize.width.toStringAsFixed(2)}"),
-    //         Text("Screen Height: ${screenSize.height.toStringAsFixed(2)}"),
-    //         Text("Orientation: $orientation"),
-    //       ],
-    //     ),
-    //   ),
-    // ));
   }
 }
