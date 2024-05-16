@@ -1,4 +1,5 @@
 import 'package:easymart/pages/detail_gambar.dart';
+import 'package:easymart/pages/draggable_container.dart';
 import 'package:flutter/material.dart';
 
 import 'package:easymart/pages/info_page.dart';
@@ -17,6 +18,13 @@ class HomePage extends StatelessWidget {
             onPressed: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => const InfoPage()));
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.drag_indicator),
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const DraggableContainer()));
             },
           ),
         ],
