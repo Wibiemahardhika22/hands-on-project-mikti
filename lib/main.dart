@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
-import 'package:easymart/pages/account_page.dart';
 import 'package:easymart/pages/cart_page.dart';
 import 'package:easymart/pages/home_page.dart';
+import 'package:easymart/pages/account_page.dart';
 
 void main() {
   runApp(const MyApp());
